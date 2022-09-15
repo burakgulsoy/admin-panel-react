@@ -18,7 +18,6 @@ class ViewFreelancers extends Component {
 
     getFreelancerById = (freelancer_id) => {
         this.props.actions.getFreelancerById(freelancer_id)
-        console.log(freelancer_id)
     }
 
     
@@ -100,7 +99,7 @@ function getRoleName(role_id) {
 
 function mapStateToProps(state) {
     return {
-        validatedFreelancers: state.validatedFreelancerListReducer,
+        validatedFreelancers: state.validatedFreelancerListReducer
     }
 }
 

@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as taskActions from '../../redux/actions/taskActions'
+
 import {
   CardTitle,
   CardText,
@@ -9,11 +12,23 @@ import {
   List,
 } from "reactstrap"
 
+
+
 class freelancerInfo extends Component {
+
+ 
+
+  componentDidMount() {
+    this.props.actions.getAllTasks()
+  }
+
+  
   render() {
+
+    let freelancerTasks = getFreelancerTasks(this.props.allTasks, this.props.freelancer)
+
     return (
       <div>
-
 
         <CardGroup className="bg-light">
           <Card>
@@ -67,7 +82,7 @@ class freelancerInfo extends Component {
 
             <CardBody>
               <CardTitle tag="h5">
-               Task Statistics
+                Task Statistics
               </CardTitle>
 
               <CardText>
@@ -75,17 +90,20 @@ class freelancerInfo extends Component {
                 <List type='unstyled'>
 
                   <li class='list-group-item'>
-                    Total tasks:  sayı
+                    Total tasks: {getFreelancerTasksNumber(this.props.allTasks, this.props.freelancer)}
                   </li>
 
                   <li class='list-group-item'>
-                    Tasks to do: sayı
+                    Tasks to do: 
+                    {/* {getToDoTasksNumber(freelancerTasks)} */}
                   </li>
                   <li class='list-group-item'>
-                    Tasks in progress: sayı
+                    Tasks in progress: 
+                    {/* {getInProgressTasksNumber(freelancerTasks)} */}
                   </li>
                   <li class='list-group-item'>
-                    Tasks done: sayı
+                    Tasks done: 
+                    {/* {getDoneTasksNumber(freelancerTasks)} */}
                   </li>
 
 
@@ -96,7 +114,7 @@ class freelancerInfo extends Component {
             </CardBody>
           </Card>
 
-          
+
 
 
         </CardGroup>
@@ -130,12 +148,91 @@ function getRoleName(role_id) {
   }
 }
 
+function getFreelancerTasksNumber(allTasks, freelancer){
+
+  let freelancerTasks = 0;
+
+  for (let i = 0; i < allTasks.length; i++) {
+    
+    if(allTasks[i].freelancer_id == freelancer.freelancer_id){
+      freelancerTasks++
+    }
+    
+  }
+  return freelancerTasks
+  
+}
+
+function getToDoTasksNumber(freelancerTasks){
+  let toDoTasks = 0
+
+  for (let i = 0; i < freelancerTasks.length; i++) {
+    
+    if(freelancerTasks[i].task_type="TO_DO"){
+      toDoTasks++
+    }
+    
+  }
+
+  return toDoTasks
+}
+
+function getInProgressTasksNumber(freelancerTasks){
+  let inProgressTasks = 0
+
+  for (let i = 0; i < freelancerTasks.length; i++) {
+    
+    if(freelancerTasks[i].task_type="IN_PROGRESS"){
+      inProgressTasks++
+    }
+    
+  }
+
+  return inProgressTasks
+}
+
+function getDoneTasksNumber(freelancerTasks){
+  let doneTasks = 0
+
+  for (let i = 0; i < freelancerTasks.length; i++) {
+    
+    if(freelancerTasks[i].task_type="DONE"){
+      doneTasks++
+    }
+    
+  }
+
+  return doneTasks
+}
+
+function getFreelancerTasks(allTasks, freelancer){
+  let freelancerTasks = []
+
+  for (let i = 0; i < allTasks.length; i++) {
+
+    if(allTasks[i].freelancer_id == freelancer.freelancer_id){
+      freelancerTasks.push(allTasks[i])
+    }
+    
+  }
+
+  return freelancerTasks
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: {
+      getAllTasks: bindActionCreators(taskActions.getAllTasks, dispatch)
+    }
+  }
+}
+
 
 function mapStateToProps(state) {
   return {
     freelancer: state.getFreelancerByIdReducer,
-
+    allTasks: state.allTasksListReducer,
   }
 }
 
-export default connect(mapStateToProps)(freelancerInfo)
+export default connect(mapStateToProps, mapDispatchToProps)(freelancerInfo)
