@@ -9,6 +9,7 @@ import * as freelancerActions from '../../redux/actions/freelancerActions'
 import { Link } from 'react-router-dom'
 
 
+
 class ViewFreelancers extends Component {
 
     componentDidMount() {
@@ -20,12 +21,14 @@ class ViewFreelancers extends Component {
         console.log(freelancer_id)
     }
 
+    
+
     render() {
         return (
             <div>
                 <Table striped hover bordered>
                     <thead >
-                        <tr >
+                        <tr className="text-center">
                             <th>ID</th>
                             <th>Name</th>
                             <th>Surname</th>
@@ -39,10 +42,10 @@ class ViewFreelancers extends Component {
 
                     <tbody >
                         {this.props.validatedFreelancers.map(freelancer => (
-                            <tr key={freelancer.freelancer_id} >
+                            <tr key={freelancer.freelancer_id} className="text-center">
 
                                 <th scope='row'>{freelancer.freelancer_id}</th>
-                                <td>{freelancer.name}</td>
+                                <td >{freelancer.name}</td>
                                 <td>{freelancer.surname}</td>
                                 <td>{freelancer.email}</td>
                                 <td>{freelancer.phone_number}</td>
@@ -50,10 +53,10 @@ class ViewFreelancers extends Component {
                                 <td>
                                     <Link to="../freelancerPage/FreelancerInfo">
                                         <Button
-                                            className="my-2"
+                                            className="my-1"
                                             onClick={()=>this.getFreelancerById(freelancer.freelancer_id)}
                                         >
-                                            >Info
+                                            Info
                                         </Button>
                                     </Link>
 
@@ -70,6 +73,7 @@ class ViewFreelancers extends Component {
         )
     }
 }
+
 
 
 function getRoleName(role_id) {

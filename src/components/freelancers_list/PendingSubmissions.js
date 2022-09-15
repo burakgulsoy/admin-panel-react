@@ -27,7 +27,7 @@ class PendingSubmissions extends Component {
             <div>
                 <Table striped hover bordered>
                     <thead >
-                        <tr>
+                        <tr className="text-center">
                             <th>ID</th>
                             <th>Name</th>
                             <th>Surname</th>
@@ -42,7 +42,7 @@ class PendingSubmissions extends Component {
 
                     <tbody>
                         {this.props.unvalidatedFreelancers.map(freelancer => (
-                            <tr key={freelancer.freelancer_id}>
+                            <tr key={freelancer.freelancer_id} className="text-center">
                                 <th scope='row'>{freelancer.freelancer_id}</th>
                                 <td>{freelancer.name}</td>
                                 <td>{freelancer.surname}</td>
