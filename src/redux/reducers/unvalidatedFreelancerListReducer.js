@@ -6,6 +6,10 @@ export default function unvalidatedFreelancerListReducer(state = initialState.un
         case actionTypes.GET_UNVALIDATED_FREELANCERS_SUCCESS:
             return action.payload
 
+        case actionTypes.REMOVE_FROM_PENDING_LIST:
+            const newState = state.filter(freelancer => freelancer.freelancer_id !== action.payload.freelancer_id)
+            return newState;
+            
         default:
             return state;
     }

@@ -12,34 +12,28 @@ import {
   List,
 } from "reactstrap"
 
-
-
 class freelancerInfo extends Component {
-
- 
 
   componentDidMount() {
     this.props.actions.getAllTasks()
   }
 
-  
   render() {
 
     let freelancerTasks = getFreelancerTasks(this.props.allTasks, this.props.freelancer)
 
     return (
       <div>
-
         <CardGroup className="bg-light">
           <Card>
 
             <CardBody>
+
               <CardTitle tag="h5">
                 {this.props.freelancer.name + " " + this.props.freelancer.surname}
               </CardTitle>
 
               <CardText>
-
                 <List type='unstyled'>
 
                   <li class='list-group-item'>
@@ -49,13 +43,12 @@ class freelancerInfo extends Component {
                   <li class='list-group-item'>
                     Email: {this.props.freelancer.email}
                   </li>
+
                   <li class='list-group-item'>
                     Phone Number: {this.props.freelancer.phone_number}
                   </li>
 
-
                 </List>
-
               </CardText>
 
             </CardBody>
@@ -63,15 +56,14 @@ class freelancerInfo extends Component {
 
 
           <Card>
-
             <CardBody>
+
               <CardTitle tag="h5">
                 About
               </CardTitle>
 
               <CardText>
                 {this.props.freelancer.freelancer_description}
-
               </CardText>
 
             </CardBody>
@@ -84,9 +76,7 @@ class freelancerInfo extends Component {
               <CardTitle tag="h5">
                 Task Statistics
               </CardTitle>
-
               <CardText>
-
                 <List type='unstyled'>
 
                   <li class='list-group-item'>
@@ -94,23 +84,22 @@ class freelancerInfo extends Component {
                   </li>
 
                   <li class='list-group-item'>
-                    Tasks to do: 
-                    {/* {getToDoTasksNumber(freelancerTasks)} */}
+                    Tasks to do:
+                    {/* {getToDoTasksNumber(getFreelancerTasks(this.props.allTasks, this.props.freelancer))} */}
                   </li>
+
                   <li class='list-group-item'>
-                    Tasks in progress: 
+                    Tasks in progress:
                     {/* {getInProgressTasksNumber(freelancerTasks)} */}
                   </li>
+
                   <li class='list-group-item'>
-                    Tasks done: 
+                    Tasks done:
                     {/* {getDoneTasksNumber(freelancerTasks)} */}
                   </li>
 
-
                 </List>
-
               </CardText>
-
             </CardBody>
           </Card>
 
@@ -148,72 +137,72 @@ function getRoleName(role_id) {
   }
 }
 
-function getFreelancerTasksNumber(allTasks, freelancer){
+function getFreelancerTasksNumber(allTasks, freelancer) {
 
   let freelancerTasks = 0;
 
   for (let i = 0; i < allTasks.length; i++) {
-    
-    if(allTasks[i].freelancer_id == freelancer.freelancer_id){
+
+    if (allTasks[i].freelancer_id == freelancer.freelancer_id) {
       freelancerTasks++
     }
-    
+
   }
   return freelancerTasks
-  
+
 }
 
-function getToDoTasksNumber(freelancerTasks){
+function getToDoTasksNumber(freelancerTasks) {
   let toDoTasks = 0
 
   for (let i = 0; i < freelancerTasks.length; i++) {
-    
-    if(freelancerTasks[i].task_type="TO_DO"){
+
+    if (freelancerTasks[i].task_type = "TO_DO") {
       toDoTasks++
     }
-    
+
   }
 
   return toDoTasks
 }
 
-function getInProgressTasksNumber(freelancerTasks){
+function getInProgressTasksNumber(freelancerTasks) {
   let inProgressTasks = 0
 
   for (let i = 0; i < freelancerTasks.length; i++) {
-    
-    if(freelancerTasks[i].task_type="IN_PROGRESS"){
+
+    if (freelancerTasks[i].task_type = "IN_PROGRESS") {
       inProgressTasks++
     }
-    
+
   }
 
   return inProgressTasks
 }
 
-function getDoneTasksNumber(freelancerTasks){
+function getDoneTasksNumber(freelancerTasks) {
   let doneTasks = 0
 
   for (let i = 0; i < freelancerTasks.length; i++) {
-    
-    if(freelancerTasks[i].task_type="DONE"){
+
+    if (freelancerTasks[i].task_type = "DONE") {
       doneTasks++
     }
-    
+
   }
 
   return doneTasks
 }
 
-function getFreelancerTasks(allTasks, freelancer){
+function getFreelancerTasks(allTasks, freelancer) {
   let freelancerTasks = []
 
   for (let i = 0; i < allTasks.length; i++) {
 
-    if(allTasks[i].freelancer_id == freelancer.freelancer_id){
+    if (allTasks[i].freelancer_id == freelancer.freelancer_id) {
       freelancerTasks.push(allTasks[i])
     }
-    
+
   }
 
   return freelancerTasks

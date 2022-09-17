@@ -1,11 +1,5 @@
 import * as actionTypes from "./actionTypes"
 
-// export function getFreelancersSuccess(freelancers){
-//     return {
-//         type: actionTypes.GET_FREELANCERS_SUCCESS,
-//         payload:freelancers
-//     }
-// }
 
 export function getValidatedFreelancersSuccess(validatedFreelancers) {
     return {
@@ -107,6 +101,13 @@ export function getUnvalidatedFreelancers() {
             .then(response => response.json())
             .then(result => dispatch(getUnvalidatedFreelancersSuccess(result)))
     };
+}
+
+export function removeFromPendingList(freelancer){
+    return {
+        type: actionTypes.REMOVE_FROM_PENDING_LIST,
+        payload:freelancer
+    }
 }
 
 export async function handleResponse(response){

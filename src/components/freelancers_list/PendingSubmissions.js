@@ -6,6 +6,7 @@ import {
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as freelancerActions from '../../redux/actions/freelancerActions'
+import alertify from "alertifyjs"
 
 class PendingSubmissions extends Component {
 
@@ -16,10 +17,14 @@ class PendingSubmissions extends Component {
     validateFreelancer(freelancerToUpdate){
         freelancerToUpdate.is_validated = 1
         this.props.actions.updateFreelancer(freelancerToUpdate)
-    }
+        this.props.actions.removeFromPendingList(freelancerToUpdate)
+        alertify.success(freelancerToUpdate.name + " " + freelancerToUpdate.surname + " is validated")
+    } 
 
     deleteFreelancer(freelancerToDelete){
         this.props.actions.deleteFreelancer(freelancerToDelete)
+        this.props.actions.removeFromPendingList(freelancerToDelete)
+        alertify.warning(freelancerToDelete.name + " " + freelancerToDelete.surname + " is denied")
     }
 
     render() {
@@ -39,7 +44,6 @@ class PendingSubmissions extends Component {
                         </tr>
                     </thead>
 
-
                     <tbody>
                         {this.props.unvalidatedFreelancers.map(freelancer => (
                             <tr key={freelancer.freelancer_id} className="text-center">
@@ -55,9 +59,6 @@ class PendingSubmissions extends Component {
                         ))}
                     </tbody>
                 </Table>
-
-               
-
             </div>
         )
     }
@@ -96,7 +97,8 @@ function mapDispatchToProps(dispatch) {
         actions: {
             getUnvalidatedFreelancers: bindActionCreators(freelancerActions.getUnvalidatedFreelancers, dispatch),
             updateFreelancer:bindActionCreators(freelancerActions.updateFreelancer,dispatch),
-            deleteFreelancer:bindActionCreators(freelancerActions.deleteFreelancer,dispatch)
+            deleteFreelancer:bindActionCreators(freelancerActions.deleteFreelancer,dispatch),
+            removeFromPendingList:bindActionCreators(freelancerActions.removeFromPendingList,dispatch)
         }
     }
 }
