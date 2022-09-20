@@ -20,8 +20,6 @@ class freelancerInfo extends Component {
 
   render() {
 
-    let freelancerTasks = getFreelancerTasks(this.props.allTasks, this.props.freelancer)
-
     return (
       <div>
         <CardGroup className="bg-light">
@@ -71,7 +69,6 @@ class freelancerInfo extends Component {
 
 
           <Card>
-
             <CardBody>
               <CardTitle tag="h5">
                 Task Statistics
@@ -84,31 +81,22 @@ class freelancerInfo extends Component {
                   </li>
 
                   <li class='list-group-item'>
-                    Tasks to do:
-                    {/* {getToDoTasksNumber(getFreelancerTasks(this.props.allTasks, this.props.freelancer))} */}
+                    Tasks to do: {getToDoTasksNumber(this.props.allTasks, this.props.freelancer)}
                   </li>
 
                   <li class='list-group-item'>
-                    Tasks in progress:
-                    {/* {getInProgressTasksNumber(freelancerTasks)} */}
+                    Tasks in progress: {getInProgressTasksNumber(this.props.allTasks, this.props.freelancer)}
                   </li>
 
                   <li class='list-group-item'>
-                    Tasks done:
-                    {/* {getDoneTasksNumber(freelancerTasks)} */}
+                    Tasks done: {getDoneTasksNumber(this.props.allTasks, this.props.freelancer)}
                   </li>
 
                 </List>
               </CardText>
             </CardBody>
           </Card>
-
-
-
-
         </CardGroup>
-
-
 
       </div>
     )
@@ -152,12 +140,12 @@ function getFreelancerTasksNumber(allTasks, freelancer) {
 
 }
 
-function getToDoTasksNumber(freelancerTasks) {
+function getToDoTasksNumber(allTasks,freelancer) {
   let toDoTasks = 0
 
-  for (let i = 0; i < freelancerTasks.length; i++) {
+  for (let i = 0; i < allTasks.length; i++) {
 
-    if (freelancerTasks[i].task_type = "TO_DO") {
+    if (allTasks[i].task_type == "TO_DO" && allTasks[i].freelancer_id == freelancer.freelancer_id) {
       toDoTasks++
     }
 
@@ -166,12 +154,12 @@ function getToDoTasksNumber(freelancerTasks) {
   return toDoTasks
 }
 
-function getInProgressTasksNumber(freelancerTasks) {
+function getInProgressTasksNumber(allTasks,freelancer) {
   let inProgressTasks = 0
 
-  for (let i = 0; i < freelancerTasks.length; i++) {
+  for (let i = 0; i < allTasks.length; i++) {
 
-    if (freelancerTasks[i].task_type = "IN_PROGRESS") {
+    if (allTasks[i].task_type == "IN_PROGRESS" && allTasks[i].freelancer_id == freelancer.freelancer_id) {
       inProgressTasks++
     }
 
@@ -180,12 +168,12 @@ function getInProgressTasksNumber(freelancerTasks) {
   return inProgressTasks
 }
 
-function getDoneTasksNumber(freelancerTasks) {
+function getDoneTasksNumber(allTasks,freelancer) {
   let doneTasks = 0
 
-  for (let i = 0; i < freelancerTasks.length; i++) {
+  for (let i = 0; i < allTasks.length; i++) {
 
-    if (freelancerTasks[i].task_type = "DONE") {
+    if (allTasks[i].task_type == "DONE" && allTasks[i].freelancer_id == freelancer.freelancer_id) {
       doneTasks++
     }
 
@@ -194,19 +182,7 @@ function getDoneTasksNumber(freelancerTasks) {
   return doneTasks
 }
 
-function getFreelancerTasks(allTasks, freelancer) {
-  let freelancerTasks = []
 
-  for (let i = 0; i < allTasks.length; i++) {
-
-    if (allTasks[i].freelancer_id == freelancer.freelancer_id) {
-      freelancerTasks.push(allTasks[i])
-    }
-
-  }
-
-  return freelancerTasks
-}
 
 function mapDispatchToProps(dispatch) {
   return {

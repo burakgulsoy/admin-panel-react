@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
     inProgressTasksListReducer,
     doneTasksListReducer,
     getFreelancerByIdReducer,
-    updateFreelancerReducer
+    updateFreelancerReducer,
 })
 
 export default rootReducer;

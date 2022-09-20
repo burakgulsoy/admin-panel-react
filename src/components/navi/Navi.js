@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Navbar,
   NavbarBrand,
@@ -6,6 +7,8 @@ import {
 } from "reactstrap";
 
 export default class Navi extends React.Component {
+
+
   constructor(props) {
     super(props);
 
@@ -20,6 +23,7 @@ export default class Navi extends React.Component {
     });
   }
   render() {
+
     return (
       <div>
         <Navbar
@@ -35,6 +39,8 @@ export default class Navi extends React.Component {
           <Button className="ml-auto">
             Logout
           </Button>
+
+          {/* <Logout></Logout> */}
         </Navbar>
 
       </div>

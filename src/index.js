@@ -6,16 +6,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'alertifyjs/build/css/alertify.min.css'
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import configureStore from './redux/reducers/configureStore';
+import store, { persistor } from './redux/reducers/configureStore';
+import { PersistGate } from 'redux-persist/integration/react';
 
-const store = configureStore()
+// const store = configureStore()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <PersistGate Loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>
