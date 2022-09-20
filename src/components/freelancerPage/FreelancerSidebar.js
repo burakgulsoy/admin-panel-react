@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Container,
     NavLink,
     List,
-    Navbar
+    Navbar,
+    Nav,
+    NavItem,
+    Collapse
 } from "reactstrap";
 
 function FreelancerSidebar(props) {
+
+    const [collapsedTasksInfo, setCollapsedTasksInfo] = useState(true);
+
+    const toggleNavbarTasksInfo = () => setCollapsedTasksInfo(!collapsedTasksInfo);
+
 
     return (
 
@@ -29,7 +37,7 @@ function FreelancerSidebar(props) {
                         <li class="list-group-item">
 
                             <Navbar >
-                                <NavLink  href="/freelancerPage/FreelancerInfo">
+                                <NavLink href="/freelancerPage/FreelancerInfo">
                                     Personal Info
                                 </NavLink>
                             </Navbar>
@@ -38,11 +46,39 @@ function FreelancerSidebar(props) {
 
                         <li class="list-group-item">
 
-                            <Navbar   >
-                                <NavLink href="/freelancerPage/FreelancerTasks">
+                            <Navbar onClick={toggleNavbarTasksInfo} href="#">
+                                <NavLink href="#">
                                     Tasks Info
                                 </NavLink>
                             </Navbar>
+
+                            <Collapse isOpen={!collapsedTasksInfo} navbar>
+
+                                <Nav navbar>
+                                    <NavItem>
+                                        <NavLink href="../tasks/FreelancerAllTasks" className='ms-5'>
+                                            View all tasks
+                                        </NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="../tasks/FreelancerTasksToDo" className='ms-5'>
+                                            View tasks - TODO
+                                        </NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="../tasks/FreelancerTasksInProgress" className='ms-5'>
+                                            View tasks - In progress
+                                        </NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="../tasks/FreelancerTasksDone" className='ms-5'>
+                                            View tasks - Done
+                                        </NavLink>
+                                    </NavItem>
+                                </Nav>
+
+                            </Collapse>
+
 
                         </li>
                     </List>

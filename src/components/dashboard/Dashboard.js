@@ -11,6 +11,7 @@ import ViewTasksToDo from '../tasks/ViewTasksToDo'
 import ViewTasksInProgress from '../tasks/ViewTasksInProgress'
 import ViewTasksDone from '../tasks/ViewTasksDone'
 
+// THIS CLASS IS NO LONGER USED, CHECK APP.JS FOR ROUTES
 export default class Dashboard extends Component {
     render() {
         return (
@@ -30,11 +31,11 @@ export default class Dashboard extends Component {
                                 <PendingSubmissions />} />
                             <Route exact path="//tasks/ViewAllTasks" element={
                                 <ViewAllTasks />} />
-                                <Route exact path="//tasks/ViewTasksToDo" element={
+                            <Route exact path="//tasks/ViewTasksToDo" element={
                                 <ViewTasksToDo />} />
-                                <Route exact path="//tasks/ViewTasksInProgress" element={
+                            <Route exact path="//tasks/ViewTasksInProgress" element={
                                 <ViewTasksInProgress />} />
-                                <Route exact path="//tasks/ViewTasksDone" element={
+                            <Route exact path="//tasks/ViewTasksDone" element={
                                 <ViewTasksDone />} />
                             <Route path="*" element={<NotFound />} />
                         </Routes>

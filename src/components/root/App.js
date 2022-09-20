@@ -14,6 +14,10 @@ import ViewTasksDone from '../tasks/ViewTasksDone'
 import FreelancerSidebar from "../freelancerPage/FreelancerSidebar";
 import FreelancerInfo from "../freelancerPage/FreelancerInfo";
 import FreelancerTasks from "../freelancerPage/FreelancerTasks";
+import FreelancerAllTasks from '../tasks/FreelancerAllTasks';
+import FreelancerTasksToDo from '../tasks/FreelancerTasksToDo';
+import FreelancerTasksDone from '../tasks/FreelancerTasksDone';
+import FreelancerTasksInProgress from '../tasks/FreelancerTasksInProgress';
 
 function App() {
 
@@ -28,6 +32,14 @@ function App() {
             <Routes>
               <Route path="/freelancerPage/FreelancerInfo" element={<FreelancerSidebar />} />
               <Route path="/freelancerPage/FreelancerTasks" element={<FreelancerSidebar />} />
+              <Route exact path="//tasks/FreelancerAllTasks" element={
+                <FreelancerSidebar />} />
+              <Route exact path="//tasks/FreelancerTasksToDo" element={
+                <FreelancerSidebar />} />
+              <Route exact path="//tasks/FreelancerTasksInProgress" element={
+                <FreelancerSidebar />} />
+              <Route exact path="//tasks/FreelancerTasksDone" element={
+                <FreelancerSidebar />} />
               <Route path="*" element={<Sidebar />} />
             </Routes>
 
@@ -52,7 +64,14 @@ function App() {
                 <ViewTasksDone />} />
               <Route path="/freelancerPage/FreelancerInfo" element={<FreelancerInfo />} />
               <Route path="/freelancerPage/FreelancerTasks" element={<FreelancerTasks />} />
-
+              <Route exact path="//tasks/FreelancerAllTasks" element={
+                <FreelancerAllTasks />} />
+              <Route exact path="//tasks/FreelancerTasksToDo" element={
+                <FreelancerTasksToDo />} />
+              <Route exact path="//tasks/FreelancerTasksInProgress" element={
+                <FreelancerTasksInProgress />} />
+              <Route exact path="//tasks/FreelancerTasksDone" element={
+                <FreelancerTasksDone />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
 
